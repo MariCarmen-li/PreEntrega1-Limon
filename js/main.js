@@ -1,21 +1,33 @@
-// Lista vacía
+// Lista para almacenar los elementos y cantidades
 var listaDeCompras = [];
 
-// Solicitar al usuario los elementos y cantidades hasta que ingrese "fin"
+// Solicita al usuario los elementos y cantidades hasta que ingrese "fin"
 while (true) {
   var item = prompt("Ingrese un elemento a la lista de compras (o 'fin' para terminar):");
-  
+
   if (item.toLowerCase() === "fin") {
-    break; // Salir del bucle si el usuario ingresa "fin"
+    break; // Sale del bucle si el usuario ingresa "fin"
   }
-  
-  var cantidad = prompt("Ingrese la cantidad de '" + item + "':");
+
+  var cantidad;
+  var cantidadValida = false;
+
+  while (!cantidadValida) {
+    cantidad = prompt("Ingrese la cantidad de empaques de '" + item + "':");
+
+    if (!Number.isInteger(parseFloat(cantidad))) {
+      alert("La cantidad de empaques ingresada no es entera. Por favor, ingrese una cantidad válida.");
+    } else {
+      cantidadValida = true;
+    }
+  }
+
   var articulo = {
     nombre: item,
     cantidad: parseInt(cantidad)
   };
-  
-  listaDeCompras.push(articulo); // Agregar el artículo a la lista
+
+  listaDeCompras.push(articulo); // Agrega el artículo a la lista
 }
 
 // Cadena de texto con la lista de compras
